@@ -10,3 +10,7 @@ RUN add-apt-repository ppa:pypy/ppa && \
 RUN /bin/echo -e "#!/bin/sh\nexport PATH=$PATH:/usr/local/go/bin" > /etc/profile.d/go.sh
 ADD primes.py /root/primes.py
 ADD primes.go /root/primes.go
+ADD /docker-entrypoint.sh /entrypoint.sh
+WORKDIR /root
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["bench"]
